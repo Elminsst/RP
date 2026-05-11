@@ -2,7 +2,7 @@ name = "rp-hub-worker"
 
 main = "src/index.js"
 
-compatibility_date = "2026-05-12"
+compatibility_date = "2026-05-11"
 
 [assets]
 directory = "./public"
