@@ -1,4 +1,4 @@
-name = "rp-hub-worker"
+name = "rplay"
 
 main = "src/index.js"
 
