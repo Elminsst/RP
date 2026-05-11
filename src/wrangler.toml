@@ -1,0 +1,9 @@
+name = "rp-hub-worker"
+
+main = "src/index.js"
+
+compatibility_date = "2026-05-12"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
