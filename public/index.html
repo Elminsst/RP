@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-    <script>
+        <script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -73,6 +73,59 @@
             }
         }
     </script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                ...
+            }
+        }
+    }
+</script>
+
+<!-- 这里新增 -->
+<script>
+
+async function uploadImage(file) {
+
+  try {
+
+    const formData = new FormData();
+
+    formData.append("file", file);
+
+    const res = await fetch("/api/upload", {
+
+      method: "POST",
+
+      body: formData
+
+    });
+
+    if (!res.ok) {
+
+      throw new Error(
+        "Upload failed"
+      );
+    }
+
+    const data =
+      await res.json();
+
+    return data;
+
+  } catch (err) {
+
+    console.error(
+      "Image upload error:",
+      err
+    );
+
+    return null;
+  }
+}
+
+</script>
     <script>
         document.write('<link rel="stylesheet" href="assets/css/styles.css?v=' + new Date().getTime() + '">');
     </script>
