@@ -20,7 +20,7 @@ kv_namespaces = [
 [[d1_databases]]
 binding = "RP_DB"
 database_name = "rplayD1"
-database_id = " 07dac755-52b2-4b0b-a149-88c335f963c1"
+database_id = "07dac755-52b2-4b0b-a149-88c335f963c1"
 [[r2_buckets]]
 binding = "RP_R2"
 bucket_name = "rp-images"
