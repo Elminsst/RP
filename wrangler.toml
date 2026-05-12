@@ -2,25 +2,24 @@ name = "rplay"
 main = "src/index.js"
 compatibility_date = "2026-05-12"
 
+# 1. 静态资源配置
 [assets]
 directory = "./public"
 binding = "ASSETS"
 run_worker_first = true
 
-# =====================
-# KV 新增绑定
-# =====================
-kv_namespaces = [
-  { binding = "RP_KV", id = "RP" }
-]
-
-# =====================
-# D1 新增绑定
-# =====================
+# 2. D1 数据库配置（务必检查 ID 是否包含前后空格）
 [[d1_databases]]
 binding = "RP_DB"
 database_name = "rplayD1"
 database_id = "07dac755-52b2-4b0b-a149-88c335f963c1"
+
+# 3. R2 存储桶配置
 [[r2_buckets]]
 binding = "RP_R2"
 bucket_name = "rp-images"
+
+# 4. KV 命名空间配置（单独出来，不要放在 assets 下面）
+[[kv_namespaces]]
+binding = "RP"
+id = "00020e75d23a4be29f861c8babcd8bf6"
