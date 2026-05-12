@@ -21,3 +21,6 @@ kv_namespaces = [
 binding = "RP_DB"
 database_name = "rplayD1"
 database_id = "rplayD1"
+[[r2_buckets]]
+binding = "RP_R2"
+bucket_name = "rp-images"
