@@ -1,15 +1,14 @@
 const PASSWORD = "qaz741"
 
 function html(content) {
+
   return new Response(content, {
+
     headers: {
       "Content-Type": "text/html;charset=UTF-8"
     }
-  })
-}
 
-function redirect(url) {
-  return Response.redirect(url, 302)
+  })
 }
 
 export default {
@@ -18,7 +17,6 @@ export default {
 
     const url = new URL(request.url)
 
-    // 读取 Cookie
     const cookie =
       request.headers.get("Cookie") || ""
 
@@ -35,66 +33,43 @@ export default {
 <head>
 
 <meta charset="UTF-8">
-
 <title>RP-Hub Login</title>
 
 <style>
 
 body{
-
   background:#111;
   color:white;
-
   display:flex;
   justify-content:center;
   align-items:center;
-
   height:100vh;
-
   font-family:sans-serif;
 }
 
 .box{
-
   width:320px;
-
   background:#222;
-
   padding:30px;
-
   border-radius:12px;
 }
 
 input{
-
   width:100%;
-
   padding:12px;
-
   border:none;
-
   border-radius:8px;
-
   box-sizing:border-box;
 }
 
 button{
-
   width:100%;
-
-  margin-top:15px;
-
   padding:12px;
-
+  margin-top:15px;
   border:none;
-
   border-radius:8px;
-
   background:#5865f2;
-
   color:white;
-
-  cursor:pointer;
 }
 
 </style>
@@ -112,7 +87,7 @@ button{
 <input
 type="password"
 name="password"
-placeholder="输入访问密码"
+placeholder="输入密码"
 required
 >
 
@@ -141,7 +116,6 @@ required
       const password =
         form.get("password")
 
-      // 密码正确
       if (password === PASSWORD) {
 
         return new Response(null, {
@@ -162,20 +136,42 @@ required
 
       return html(`
         <h1>密码错误</h1>
-        <a href="/login">返回登录</a>
       `)
+    }
+
+    // 退出登录
+    if (url.pathname === "/logout") {
+
+      return new Response(null, {
+
+        status: 302,
+
+        headers: {
+
+          "Location": "/login",
+
+          "Set-Cookie":
+            "rp_auth=; Path=/; Max-Age=0"
+
+        }
+
+      })
     }
 
     // 未登录
     if (!loggedIn) {
 
-      return redirect(
-        `${url.origin}/login`
+      return Response.redirect(
+        `${url.origin}/login`,
+        302
       )
     }
 
-    // 已登录后返回静态资源
-    return env.ASSETS.fetch(request)
+    // 已登录后读取静态资源
+    const response =
+      await env.ASSETS.fetch(request)
+
+    return response
 
   }
 
